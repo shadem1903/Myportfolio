@@ -1,0 +1,279 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cursor-size: 30px;
+}
+
+body {
+  cursor: none;
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-neon-blue to-neon-purple;
+  }
+
+  .hero-gradient {
+    @apply bg-space-gradient bg-grid-pattern;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-neon-blue hover:border-neon-blue/50;
+  }
+
+  .bg-grid-white {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(255 255 255 / 0.05)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+  }
+
+  .skill-card {
+    @apply relative overflow-hidden;
+  }
+
+  .skill-card::before {
+    @apply content-[''] absolute -inset-[1000px] bg-primary/10 opacity-0 transition-opacity duration-500;
+  }
+
+  .skill-card:hover::before {
+    @apply opacity-100 animate-pulse;
+  }
+
+  .glow-effect {
+    @apply relative;
+  }
+
+  .glow-effect::after {
+    @apply content-[''] absolute inset-0 rounded-full bg-primary/30 blur-xl opacity-0 transition-opacity duration-500;
+  }
+
+  .glow-effect:hover::after {
+    @apply opacity-100;
+  }
+  
+  /* Nuevos estilos para efectos de movimiento */
+  .floating-element {
+    @apply transition-transform duration-500 ease-out;
+    transform-style: preserve-3d;
+  }
+  
+  .parallax-card {
+    @apply transition-all duration-300 ease-out;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  
+  .cursor-dot {
+    @apply fixed w-8 h-8 rounded-full pointer-events-none z-50 mix-blend-difference;
+    background: rgba(255, 255, 255, 0.8);
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
+  }
+  
+  .cursor-outline {
+    @apply fixed w-12 h-12 rounded-full border-2 border-primary pointer-events-none z-40;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease;
+  }
+  
+  .hover-rotate {
+    @apply transition-all duration-500 ease-out;
+    transform-style: preserve-3d;
+  }
+  
+  .hover-rotate:hover {
+    @apply scale-105;
+    transform: perspective(1000px) rotateY(10deg);
+  }
+  
+  .hover-rotate-reverse:hover {
+    @apply scale-105;
+    transform: perspective(1000px) rotateY(-10deg);
+  }
+  
+  .magnetic-element {
+    @apply transition-transform duration-300 ease-out;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-float-reverse {
+    animation: float 8s ease-in-out infinite reverse;
+  }
+  
+  .animate-float-slow {
+    animation: float 10s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-pulse-slower {
+    animation: pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .blob {
+    @apply absolute rounded-full filter blur-3xl opacity-30;
+    background: linear-gradient(to right, var(--tw-gradient-stops));
+  }
+  
+  .particles-container {
+    @apply absolute inset-0 overflow-hidden pointer-events-none;
+  }
+  
+  .particle {
+    @apply absolute rounded-full;
+    background: rgba(var(--particle-color, 255, 255, 255), 0.3);
+    animation: moveParticle var(--duration, 15s) linear infinite;
+  }
+  
+  @keyframes moveParticle {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(var(--move-x, 100px), var(--move-y, 100px));
+    }
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 10px rgba(var(--tw-text-opacity), 0.5);
+  }
+  
+  .card-3d {
+    @apply transition-all duration-500 ease-out;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  
+  .card-3d-content {
+    @apply transition-transform duration-500 ease-out;
+    transform-style: preserve-3d;
+  }
+  
+  .card-3d:hover .card-3d-content {
+    transform: translateZ(20px);
+  }
+  
+  .glass-card {
+    @apply bg-dark-card/80 backdrop-blur-md border border-white/10 shadow-inner-glow;
+  }
+  
+  .glow-border {
+    @apply relative;
+  }
+  
+  .glow-border::before {
+    @apply content-[''] absolute inset-0 rounded-xl border border-white/10 z-0;
+  }
+  
+  .glow-border::after {
+    @apply content-[''] absolute -inset-[1px] rounded-xl bg-gradient-to-r from-neon-blue to-neon-purple opacity-0 transition-opacity duration-300 z-[-1];
+  }
+  
+  .glow-border:hover::after {
+    @apply opacity-30;
+  }
+  
+  .star-bg {
+    @apply absolute w-1 h-1 rounded-full bg-white/70;
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.7);
+    animation: twinkle var(--twinkle-duration, 4s) ease-in-out infinite;
+  }
+  
+  @keyframes twinkle {
+    0%, 100% {
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  
+  .section-title {
+    @apply text-2xl font-bold mb-8 gradient-text relative inline-block;
+  }
+  
+  .section-title::after {
+    @apply content-[''] absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-neon-blue to-neon-purple;
+  }
+  
+  .nav-tab {
+    @apply relative overflow-hidden px-4 py-2 text-foreground-500 transition-colors duration-300;
+  }
+  
+  .nav-tab::after {
+    @apply content-[''] absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-neon-blue to-neon-purple scale-x-0 transition-transform duration-300 origin-left;
+  }
+  
+  .nav-tab:hover::after {
+    @apply scale-x-100;
+  }
+  
+  .nav-tab[data-selected=true]::after {
+    @apply scale-x-100;
+  }
+  
+  .nav-tab[data-selected=true] {
+    @apply text-white;
+  }
+  
+  .progress-bar-wrapper {
+    @apply h-2 bg-dark-card rounded-full overflow-hidden;
+  }
+  
+  .progress-bar-fill {
+    @apply h-full bg-gradient-to-r from-neon-blue to-neon-purple;
+  }
+  
+  .timeline-dot {
+    @apply absolute -left-3 w-6 h-6 rounded-full bg-gradient-to-r from-neon-blue to-neon-purple flex items-center justify-center;
+  }
+  
+  .timeline-dot::before {
+    @apply content-[''] absolute w-4 h-4 rounded-full bg-dark-card;
+  }
+  
+  .timeline-line {
+    @apply absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-neon-blue via-neon-purple to-transparent;
+  }
+  
+  .star-field {
+    @apply fixed inset-0 pointer-events-none overflow-hidden z-[-1];
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+}
